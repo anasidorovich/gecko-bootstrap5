@@ -1,0 +1,98 @@
+nav {
+  border-bottom: 1px solid #939393;
+}
+
+nav .container {
+  height: calc(100px - 1rem);
+}
+
+.nav-item {
+  text-transform: uppercase;
+  &:last-child>a {
+    padding-right: 0;
+  }
+}
+
+.navbar-logo {
+  height: 24px;
+  line-height: 1;
+  img {
+    image-rendering: high-quality;
+  }
+}
+
+.nav-link {
+  color: inherit;
+}
+
+.title {
+  text-transform: uppercase;
+}
+
+.about, .products {
+  font-family: 'Gotham Pro', Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 23px;
+  margin-top: 50px;
+}
+
+.text-bold {
+  font-family: 'Gotham Pro Bold', Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 25px;
+  letter-spacing: 0.005em;
+}
+
+p {
+  line-height: 25px;
+  letter-spacing: 0.005em;
+}
+
+.all-line {
+  position: relative;
+  height: 900px;
+  img {
+    position: absolute;
+    top: 0;
+    background-position: center;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 100%;
+  }
+  .all-line-img {
+    top: 0.039vw;
+    z-index: 1000;
+    width: auto;
+  }
+  .back-2-img {
+    top: 490px;
+  }
+}
+
+.products {
+
+}
+
+.card {
+  width: 357px;
+  height: 550px;
+  border: 0;
+  border-radius: 0;
+  background: #F6F6F6;
+  .card-img-overlay {
+    border-radius: 0;
+    cursor: pointer;
+    &:hover {
+      background: #EFC2B3;
+      mix-blend-mode: multiply;
+    }
+  }
+  img {
+    margin-top: 85px;
+
+  }
+}

@@ -1,7 +1,8 @@
 const gulp = require('gulp');
 const gulpIf = require('gulp-if');
 const browserSync = require('browser-sync').create();
-const sass = require('gulp-sass');
+const gulpSass = require('gulp-sass');
+const nodeSass = require('node-sass');
 const htmlmin = require('gulp-htmlmin');
 const cssmin = require('gulp-cssmin');
 const uglify = require('gulp-uglify');
@@ -11,6 +12,7 @@ const jsImport = require('gulp-js-import');
 const sourcemaps = require('gulp-sourcemaps');
 const htmlPartial = require('gulp-html-partial');
 const clean = require('gulp-clean');
+const sass = gulpSass(nodeSass);
 const isProd = process.env.NODE_ENV === 'prod';
 
 const htmlFile = [
@@ -50,9 +52,14 @@ function js() {
 }
 
 function img() {
-    return gulp.src('src/img/*')
+    return gulp.src('src/assets/img/*')
         .pipe(gulpIf(isProd, imagemin()))
-        .pipe(gulp.dest('docs/img/'));
+        .pipe(gulp.dest('docs/assets/img/'));
+}
+
+function fonts() {
+    return gulp.src('src/assets/fonts/*')
+        .pipe(gulp.dest('docs/assets/fonts/'));
 }
 
 function serve() {
@@ -72,9 +79,8 @@ function watchFiles() {
     gulp.watch('src/**/*.html', gulp.series(html, browserSyncReload));
     gulp.watch('src/**/*.scss', gulp.series(css, browserSyncReload));
     gulp.watch('src/**/*.js', gulp.series(js, browserSyncReload));
-    gulp.watch('src/img/**/*.*', gulp.series(img));
-
-    return;
+    gulp.watch('src/assets/img/**/*.*', gulp.series(img));
+    gulp.watch('src/assets/fonts/**/*.*', gulp.series(fonts));
 }
 
 function del() {
@@ -86,5 +92,5 @@ exports.css = css;
 exports.html = html;
 exports.js = js;
 exports.del = del;
-exports.serve = gulp.parallel(html, css, js, img, watchFiles, serve);
-exports.default = gulp.series(del, html, css, js, img);
+exports.serve = gulp.parallel(html, css, js, img, fonts, watchFiles, serve);
+exports.default = gulp.series(del, html, css, js, img, fonts);
